@@ -17,13 +17,20 @@
     <h3>Add a New note</h3>
     <form action="/cards/{{ $card->id }}/notes" method="POST">
       <div class="form-group">
-          <textarea name="body" class="form-control"></textarea>
+          <textarea name="body" class="form-control">{{ old('body') }}</textarea>
       </div>
+      @if (count($errors))
+        <ul>
+          @foreach ($errors->all() as $error)
+            <li class="alert">{{ $error }}</li>
+          @endforeach
+        </ul>
+      @endif
       <div class="form-group">
+
         <button type="submit" class="btn btn-primary" name="button">Submit</button>
       </div>
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </form>
-
   </div>
 </div>
